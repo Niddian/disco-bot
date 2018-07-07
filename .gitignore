@@ -1,5 +1,9 @@
+#Node Files/Folders
 node_modules
+
+#Authorization Files
 token.json
 
+#Hidden Files
 .*
 !.gitignore
