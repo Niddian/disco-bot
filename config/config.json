@@ -1,0 +1,8 @@
+{
+    "prefix": "!",
+    "commands": {
+        "help": "!help",
+        "bot_info": "!botinfo",
+        "test": "test"
+    }
+}

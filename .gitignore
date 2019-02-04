@@ -2,7 +2,7 @@
 node_modules
 
 #Authorization Files
-token.ini
+token.json
 
 #Hidden Files
 .*
