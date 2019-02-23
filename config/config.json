@@ -1,9 +1,9 @@
 {
     "prefix": "!",
-    "commands": {
-        "help": "help",
-        "bot_info": "botinfo",
-        "test": "test",
-        "warframe": "warframe"
-    }
+    "commands": [
+        "help",
+        "botinfo",
+        "ping",
+        "warframe"
+    ]
 }
