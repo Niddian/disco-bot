@@ -1,9 +1,0 @@
-{
-    "prefix": "!",
-    "commands": [
-        "help",
-        "botinfo",
-        "ping",
-        "warframe"
-    ]
-}
