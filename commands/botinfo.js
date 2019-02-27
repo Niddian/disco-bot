@@ -5,8 +5,7 @@ module.exports.run = async (client, msg, args) => {
         .setTitle('Bot Info')
         .setDescription('Generic Test Bot')
         .setAuthor('Niddian', 'https://pm1.narvii.com/6477/003bd5479ec28b00208afacf3c3e5f9f198f7450_128.jpg')
-        // .setImage(icon)
-        .setThumbnail(icon)
+        .setThumbnail(client.user.displayAvatarURL)
         .setColor('#f50057')
         .addField('Created On:', client.user.createdAt);
 

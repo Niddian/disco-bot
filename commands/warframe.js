@@ -1,12 +1,32 @@
 const Discord = require('discord.js');
+const fetch = require('node-fetch');
 
 module.exports.run = async (client, msg, args) => {
-    let embed = Discord.embed();
-    msg.channel.send({
-        files: ["https://i.pinimg.com/originals/73/0e/c2/730ec25b799058bf4468584ee5b33848.gif"]
-    }).then(console.log("Showed " + msg.author.username + " their inner eye."));
+    let json = await fetch("https://drops.warframestat.us/data/modLocations.json")
+        .then(res => res.json());
+    json = json['modLocations'];
+    let embed = new Discord.RichEmbed()
+        .setTitle("Warframe")
+        .setColor(0xAA00AA)
+        .setImage();
+    // console.log(json['modLocations'].filter(d => d.modName === 'Arcane Healing'));
+    for (data in json) {
+        if (!json.hasOwnProperty(data)) { continue; }
+        for (mods in json[data]) {
+            if (!json[data].hasOwnProperty(mods)) { continue; }
+            // console.log(json[data][mods])
+        }
+    }
+
+    // Object.keys(json).forEach(key => {
+    //     console.log(json[key]);
+    // })
+    // Object.entries(json['modLocations']).forEach(([key, value]) => {
+    //     console.log(value)
+    // });
+    msg.channel.send(embed);
 }
 
 module.exports.help = {
-    name: "thirdeye"
+    name: "warframe"
 }
