@@ -23,7 +23,10 @@ client.on('ready', () => {
 });
 
 client.on('message', async (msg) => {
-    if (msg.author.bot || msg.channel.type === 'dm') return;
+    if (msg.author.bot) return;
+    if (msg.channel.type === 'dm') {
+        console.log(`\n${msg.author.username}:\n  ${msg.content}`);
+    }
 
     let msgAr = msg.content.split(' ');
     let cmd = msgAr[0];
