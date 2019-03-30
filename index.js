@@ -15,6 +15,7 @@ fs.readdir('./commands/', (err, files) => {
     jsfiles.forEach(cmd => {
         let prop = require(`./commands/${cmd}`);
         client.commands.set(prop.help.name, prop);
+        console.log(client.commands.get());
     });
 });
 
@@ -25,7 +26,10 @@ client.on('ready', () => {
 client.on('message', async (msg) => {
     if (msg.author.bot) return;
     if (msg.channel.type === 'dm') {
-        console.log(`\n${msg.author.username}:\n  ${msg.content}`);
+        fs.writeFileSync('/tmp/test', `${msg.author.username}: ${msg.content}\n`, (err) => {
+            if (err) { return console.log(err); }
+            console.log(`Message Saved: ${msg.author.username}`);
+        });
     }
 
     let msgAr = msg.content.split(' ');

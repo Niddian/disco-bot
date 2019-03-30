@@ -4,7 +4,7 @@ module.exports.run = async (client, msg, args) => {
     let embed = new Discord.RichEmbed()
         .setTitle('Bot Info')
         .setDescription('Generic Discord Bot')
-        .setAuthor('Niddian', 'https://pm1.narvii.com/6477/003bd5479ec28b00208afacf3c3e5f9f198f7450_128.jpg')
+        .setAuthor('Niddian', 'https://avatars0.githubusercontent.com/u/28369836?s=460&v=4')
         .setThumbnail(client.user.displayAvatarURL)
         .setColor('#f50057')
         .addField('Created On:', client.user.createdAt);

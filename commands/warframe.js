@@ -6,6 +6,9 @@ module.exports.run = async (client, msg, args) => {
     let json = await fetch('https://drops.warframestat.us/data/modLocations.json')
         .then(res => res.json())
         .then(data => data['modLocations']);
+    let imgJSON = await fetch(`https://warframe.fandom.com/api.php?action=query&list=allimages&aiprefix=${modName.replace(/ /g, '')}ModU&prop=images&format=json`)
+        .then(res => res.json())
+        .then(data => data['query']['allimages']);
     let enemies = [], chance = [];
     let modName, modImg;
     // console.log(json.filter(d => d.modName === 'Arcane Healing'));
@@ -26,32 +29,36 @@ module.exports.run = async (client, msg, args) => {
             modName = mod;
         }
     }
+
     if (enemies.length === 0) {
         msg.channel.send(`'${args.join(' ')}' does not match any known mod names.`);
         return;
     }
-    json = await fetch(`https://warframe.fandom.com/api.php?action=query&list=allimages&aiprefix=${modName.replace(/ /g, '')}ModU&prop=images&format=json`)
-        .then(res => res.json())
-        .then(data => data['query']['allimages']);
-    if (json.length === 0) {
-        json = await fetch(`https://warframe.fandom.com/api.php?action=query&list=allimages&aiprefix=${modName.replace(/ /g, '')}Mod&prop=images&format=json`)
+
+    if (imgJSON.length === 0) {
+        imgJSON = await fetch(`https://warframe.fandom.com/api.php?action=query&list=allimages&aiprefix=${modName.replace(/ /g, '')}Mod&prop=images&format=json`)
             .then(res => res.json())
             .then(data => data['query']['allimages']);
     }
-    for (data in json) {
-        if (!json.hasOwnProperty(data)) { continue; }
-        modImg = json[data].url;
+
+    for (data in imgJSON) {
+        if (!imgJSON.hasOwnProperty(data)) { continue; }
+        modImg = imgJSON[data].url;
     }
+
     let combo = enemies.map((itm, i) => {
         return [chance[i] + '%', itm];
     }).join('\n');
+
     let embed = new Discord.RichEmbed()
         .setAuthor('Lotus', 'https://vignette.wikia.nocookie.net/warframe/images/4/4d/Photo-4.png/revision/latest?cb=20131119220124')
         .setTitle(modName)
         .setColor(0xAA00AA)
         .setThumbnail(modImg)
         .setDescription(combo.split(',').join(' - '));
+
     msg.channel.send(embed);
+
 }
 
 module.exports.help = {
