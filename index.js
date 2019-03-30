@@ -26,10 +26,15 @@ client.on('ready', () => {
 client.on('message', async (msg) => {
     if (msg.author.bot) return;
     if (msg.channel.type === 'dm') {
-        fs.writeFileSync('/tmp/test', `${msg.author.username}: ${msg.content}\n`, (err) => {
-            if (err) { return console.log(err); }
-            console.log(`Message Saved: ${msg.author.username}`);
-        });
+        fs.appendFileSync(
+            './logs/dm',
+            `${msg.author.username}: ${msg.content}\n`,
+            { 'flags': 'a' },
+            (err) => {
+                if (err) { return console.log(err); }
+                console.log(`Message Saved: ${msg.author.username}`);
+            }
+        );
     }
 
     let msgAr = msg.content.split(' ');

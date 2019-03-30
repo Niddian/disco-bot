@@ -1,9 +1,12 @@
-#Node Files/Folders
+# Node Files/Folders
 node_modules/
 
-#Authorization Files
+# Logs
+logs/*
+
+# Authorization Files
 token.json
 
-#Hidden Files
+# Hidden Files
 .*
 !.gitignore
