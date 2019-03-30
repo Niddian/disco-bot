@@ -1,5 +1,5 @@
 #Node Files/Folders
-node_modules
+node_modules/
 
 #Authorization Files
 token.json
